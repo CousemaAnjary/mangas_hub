@@ -1,6 +1,7 @@
 import type { MiddlewareHandler } from "hono"
-import { verifyToken } from "../utils/jwt.js"
-import { getAccessTokenCookie } from "../utils/access_token.js"
+import { verifyToken } from "../utils/jwt"
+import { getAccessTokenCookie } from "../utils/access_token"
+
 
 
 export const authMiddleware: MiddlewareHandler = async (c, next) => {

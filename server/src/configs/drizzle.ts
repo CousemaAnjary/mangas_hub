@@ -1,8 +1,9 @@
 import "dotenv/config"
 import { Pool } from "pg"
-import { DATABASE_URL } from "./database.js"
+import { DATABASE_URL } from "./database"
 // import * as schema from "../models/index"
 import { drizzle } from "drizzle-orm/node-postgres"
+
 
 const pool = new Pool({
   connectionString: DATABASE_URL,
