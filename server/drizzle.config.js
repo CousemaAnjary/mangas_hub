@@ -4,7 +4,7 @@ import { DATABASE_URL } from "./src/configs/database"
 
 export default defineConfig({
   out: "./src/database/migrations",
-  schema: "./src/models/index",
+  schema: "./src/models/index.ts",
   dialect: "postgresql",
   dbCredentials: {
     url: DATABASE_URL,
