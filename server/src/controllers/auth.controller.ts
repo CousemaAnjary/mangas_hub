@@ -11,7 +11,8 @@ export const registerController = async (c: Context) => {
   if (!validated.success) return c.json({ success: false, message: validated.error.message }, 400)
 
   try {
-    await registerService(validated.data)
+    const newUser = await registerService(validated.data)
+    return c.json({ success: true, message: "Utilisateur créé avec succès", newUser },201)
 
   } catch (error) {
     return c.json(jsonError(error), 500)

@@ -1,10 +1,12 @@
 import type z from "zod"
+import type { User } from "../models"
 import { hashPassword } from "../utils/hash"
-import { findUserByEmail } from "../repositories/auth.repository"
 import type { registerSchema } from "../validations/auth.validation"
+import { createUser, findUserByEmail } from "../repositories/auth.repository"
 
 
-export const registerService = async (data: z.infer<typeof registerSchema>) => {
+
+export const registerService = async (data: z.infer<typeof registerSchema>):Promise<User> => {
 
   // Destructuration des données validées
   const { name, email, password } = data
@@ -17,6 +19,10 @@ export const registerService = async (data: z.infer<typeof registerSchema>) => {
   const hashedPassword = await hashPassword(password)
 
   // Création de l'utilisateur 
+  const newUser = await createUser({ name, email, password: hashedPassword })
+
+  // retourne l'utilisateur créé
+  return newUser
 }
 
 export const loginService = () => {}
