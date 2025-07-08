@@ -1,10 +1,10 @@
 import type z from "zod"
 import type { User } from "../models"
 import type { Payload } from "../types/auth"
+import { generateToken } from "../utils/jwt"
 import { comparePassword, hashPassword } from "../utils/hash"
 import { createUser, findUserByEmail } from "../repositories/auth.repository"
 import type { loginSchema, registerSchema } from "../validations/auth.validation"
-
 
 
 export const registerService = async (data: z.infer<typeof registerSchema>):Promise<User> => {
@@ -26,7 +26,7 @@ export const registerService = async (data: z.infer<typeof registerSchema>):Prom
   return newUser
 }
 
-export const loginService = async(data: z.infer<typeof loginSchema>) => {
+export const loginService = async(data: z.infer<typeof loginSchema>):Promise<{ accessToken: string, user: User }> => {
 
   // Destructuration des données validées
   const { email, password } = data
@@ -46,4 +46,9 @@ export const loginService = async(data: z.infer<typeof loginSchema>) => {
     image: user.image ?? undefined
   }
 
+  // Génération du token d'accès
+  const accessToken = await generateToken(payload, 60 * 15)
+
+  // Retourne le token d'accès et l'utilisateur
+  return { accessToken, user }
 }
