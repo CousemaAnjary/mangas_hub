@@ -7,8 +7,7 @@ export const users = pgTable("users", {
   email: text("email").notNull().unique(),
   password: text("password").notNull(),
   image: text("image"),
-  createdAt: timestamp("created_at").notNull(),
-  updatedAt: timestamp("updated_at").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(), 
 })
 
 // Type générés automatiquement par Drizzle
