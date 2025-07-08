@@ -26,7 +26,7 @@ export const registerService = async (data: z.infer<typeof registerSchema>):Prom
   return newUser
 }
 
-export const loginService = async(data: z.infer<typeof loginSchema>):Promise<{ accessToken: string, user: User }> => {
+export const loginService = async(data: z.infer<typeof loginSchema>):Promise<{ accessToken: string }> => {
 
   // Destructuration des données validées
   const { email, password } = data
@@ -50,5 +50,5 @@ export const loginService = async(data: z.infer<typeof loginSchema>):Promise<{ a
   const accessToken = await generateToken(payload, 60 * 15)
 
   // Retourne le token d'accès et l'utilisateur
-  return { accessToken, user }
+  return { accessToken }
 }
