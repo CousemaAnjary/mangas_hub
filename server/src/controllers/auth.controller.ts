@@ -1,6 +1,6 @@
 import type { Context } from "hono"
-import { registerService } from "../services/auth.service"
 import { jsonError } from "../utils/jsonError"
+import { registerService } from "../services/auth.service"
 import { registerSchema } from "../validations/auth.validation"
 
 
