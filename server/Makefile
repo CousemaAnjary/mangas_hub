@@ -12,7 +12,7 @@ migrate:
 
 # Drizzle studio
 studio:
-	npx drizzle-kit studio
+	npm run build && npx drizzle-kit studio
 
 # ----------------------------------------------------------------------
 # Docker Makefile
