@@ -28,9 +28,9 @@ export const loginController = async (c: Context) => {
   if (!validated.success) return c.json({ success: false, message: validated.error.message }, 400)
 
   try {
-    const { accessToken, user } = await loginService(validated.data)
+    const { accessToken } = await loginService(validated.data)
     setAccessTokenCookie(c, accessToken)
-    return c.json({ success: true, message: "Connexion réussie", user }, 200)
+    return c.json({ success: true, message: "Connexion réussie" }, 200)
 
   } catch (error) {
     return c.json(jsonError(error), 500)
