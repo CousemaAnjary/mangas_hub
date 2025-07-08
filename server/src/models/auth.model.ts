@@ -1,3 +1,4 @@
+import type { InferInsertModel, InferSelectModel } from "drizzle-orm"
 import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core"
 
 export const users = pgTable("users", {
@@ -9,3 +10,7 @@ export const users = pgTable("users", {
   createdAt: timestamp("created_at").notNull(),
   updatedAt: timestamp("updated_at").notNull(),
 })
+
+// Type générés automatiquement par Drizzle
+export type User = InferSelectModel<typeof users> 
+export type InsertUser = InferInsertModel<typeof users>
