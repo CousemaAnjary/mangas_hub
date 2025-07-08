@@ -1,8 +1,9 @@
 import type z from "zod"
 import type { User } from "../models"
-import { hashPassword } from "../utils/hash"
-import type { registerSchema } from "../validations/auth.validation"
+import type { Payload } from "../types/auth"
+import { comparePassword, hashPassword } from "../utils/hash"
 import { createUser, findUserByEmail } from "../repositories/auth.repository"
+import type { loginSchema, registerSchema } from "../validations/auth.validation"
 
 
 
@@ -25,4 +26,24 @@ export const registerService = async (data: z.infer<typeof registerSchema>):Prom
   return newUser
 }
 
-export const loginService = () => {}
+export const loginService = async(data: z.infer<typeof loginSchema>) => {
+
+  // Destructuration des données validées
+  const { email, password } = data
+
+  // Vérification si l'utilisateur existe
+  const user = await findUserByEmail(email)
+  if (!user) throw new Error("Utilisateur non trouvé")
+
+  // Vérification du mot de passe
+  const isPasswordValid = await comparePassword(password, user.password)
+  if (!isPasswordValid) throw new Error("Mot de passe incorrect")
+
+  const payload :Payload = {
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    image: user.image ?? undefined
+  }
+
+}

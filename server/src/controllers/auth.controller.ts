@@ -1,7 +1,7 @@
 import type { Context } from "hono"
 import { jsonError } from "../utils/jsonError"
-import { registerService } from "../services/auth.service"
-import { registerSchema } from "../validations/auth.validation"
+import { loginService, registerService } from "../services/auth.service"
+import { loginSchema, registerSchema } from "../validations/auth.validation"
 
 
 export const registerController = async (c: Context) => {
@@ -19,4 +19,16 @@ export const registerController = async (c: Context) => {
   }
 }
 
-export const loginController = async (c: Context) => {}
+export const loginController = async (c: Context) => {
+
+  // Validation les données d'entrée (body)
+  const validated = loginSchema.safeParse(await c.req.json())
+  if (!validated.success) return c.json({ success: false, message: validated.error.message }, 400)
+
+  try {
+    await loginService(validated.data)
+
+  } catch (error) {
+    return c.json(jsonError(error), 500)
+  }
+}
