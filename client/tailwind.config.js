@@ -11,6 +11,12 @@ module.exports = {
   ],
   theme: {
   	extend: {
+			fontFamily: {
+  			inter: 'var(--font-inter)',
+  			spaceGrotesk: 'var(--font-space-grotesk)',
+  			mansalva: 'var(--font-mansalva)',
+  			mogra: 'var(--font-mogra)'
+  		},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
