@@ -1,4 +1,4 @@
-// import Navbar from "@/src/components/dashboard-panel/Navbar";
+import Navbar from "@/src/components/dasboard-panel/Navbar"
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   /**
@@ -14,7 +14,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
    */
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      {/* <Navbar /> */}
+      <Navbar />
       <main className="flex-1 py-8 sm:px-8">
         <div className="mx-auto max-w-[83rem] px-6">{children}</div>
       </main>
