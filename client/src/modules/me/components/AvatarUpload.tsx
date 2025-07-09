@@ -14,7 +14,8 @@ export default function AvatarUpload() {
       accept: "image/*",
   })
 
-  const previewUrl = files[0]?.preview || null
+  const file = files[0] || null
+  const previewUrl = file.preview
 
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
