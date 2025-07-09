@@ -22,7 +22,7 @@ export default function ProfileHeader() {
     <div className="mx-auto overflow-hidden rounded-md bg-white shadow">
       <div className="relative h-72 w-full">
         <Image
-           src={profileCover}
+          src={profileCover}
           alt="Cover"
           fill
           style={{ objectFit: "cover" }}
