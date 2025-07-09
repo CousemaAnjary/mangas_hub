@@ -4,7 +4,6 @@ import { cn } from "../lib/utils"
 import { Loader } from "lucide-react"
 import { Button, ButtonProps } from "./ui/button"
 
-
 interface LoadingButtonProps extends ButtonProps {
   loading?: boolean
   loadingText?: string
