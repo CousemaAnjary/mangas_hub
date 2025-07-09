@@ -5,7 +5,6 @@ import { loginService, registerService } from "../services/auth.service"
 import { loginSchema, registerSchema } from "../validations/auth.validation"
 
 
-
 export const registerController = async (c: Context) => {
 
   // Validation les données d'entrée (body)
