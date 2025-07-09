@@ -41,13 +41,13 @@ export default function AvatarUpload() {
         </div>
 
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
-          <Pencil className="size-7 text-white drop-shadow-lg" />
+          <Pencil className="size-9 text-white drop-shadow-lg" />
         </div>
       </Button>
 
       {previewUrl && (
         <Button
-            onClick={() => removeFile(files[0]?.id)}
+          onClick={() => removeFile(files[0]?.id)}
           size="icon"
           className="border-background focus-visible:border-background absolute -top-2 -right-2 size-6 rounded-full border-2 shadow-none"
           aria-label="Remove image"
