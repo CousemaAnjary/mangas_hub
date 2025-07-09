@@ -42,7 +42,7 @@ export default function AvatarUpload() {
         </div>
 
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
-          <Pencil className=" text-white drop-shadow-lg" />
+          <Pencil className="text-white drop-shadow-lg" />
         </div>
       </Button>
 
