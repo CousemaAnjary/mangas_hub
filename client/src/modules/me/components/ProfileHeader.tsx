@@ -1,7 +1,9 @@
 "use client"
 
 import Image from "next/image"
+import AvatarUpload from "./AvatarUpload"
 import profileCover from "@/public/images/profile-cover.jpg"
+
 
 
 export default function ProfileHeader() {
@@ -28,7 +30,7 @@ export default function ProfileHeader() {
       </div>
 
       <div className="relative -mt-20 flex flex-col items-start px-6 pb-6">
-        {/* <AvatarUpload /> */}
+        <AvatarUpload />
 
         <h2 className="mt-2 font-inter font-semibold text-gray-800">
           {/* {userPayload?.name} */}
