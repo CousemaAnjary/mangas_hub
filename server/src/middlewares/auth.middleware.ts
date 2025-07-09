@@ -14,7 +14,7 @@ export const authMiddleware: MiddlewareHandler = async (c, next) => {
     const payload = await verifyToken(token)
 
     // Ajoute le payload au contexte pour les routes suivantes
-    c.set("user", payload)
+    c.set("payload", payload)
 
     // Continue vers la prochaine middleware ou route
     return next()
