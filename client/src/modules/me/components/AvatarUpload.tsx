@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
+
 import user from "@/public/images/user.png"
-import { Pencil, XIcon } from "lucide-react"
+import {  Pencil, XIcon } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { useFileUpload } from "@/src/hooks/use-file-upload"
 
@@ -41,7 +42,7 @@ export default function AvatarUpload() {
         </div>
 
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
-          <Pencil className="size-9 text-white drop-shadow-lg" />
+          <Pencil size={34} className=" text-white drop-shadow-lg" />
         </div>
       </Button>
 
