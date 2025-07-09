@@ -2,6 +2,7 @@
 
 import Image from "next/image"
 import AvatarUpload from "./AvatarUpload"
+import { useCurrentUser } from "../queries/useCurrentUser"
 import profileCover from "@/public/images/profile-cover.jpg"
 
 
@@ -10,7 +11,7 @@ export default function ProfileHeader() {
   /**
    * ! STATE (état, données) de l'application
    */
-  // const { data: userPayload } = useCurrentUser()
+  const { data: payload } = useCurrentUser()
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
    */
@@ -32,8 +33,8 @@ export default function ProfileHeader() {
       <div className="relative -mt-20 flex flex-col items-start px-6 pb-6">
         <AvatarUpload />
 
-        <h2 className="mt-2 font-inter font-semibold text-gray-800">
-          {/* {userPayload?.name} */}
+        <h2 className="mt-2 font-spaceGrotesk text-lg font-semibold text-gray-800">
+          {payload?.name}
         </h2>
         <p className="mt-1 text-center font-spaceGrotesk text-sm text-muted-foreground max-md:mt-2 max-md:text-left">
           Fan de mangas, toujours à la recherche de nouvelles aventures à
