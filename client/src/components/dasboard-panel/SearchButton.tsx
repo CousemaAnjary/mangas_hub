@@ -1,10 +1,8 @@
 "use client"
 
 import { Search } from "lucide-react"
+import { SearchButtonProps } from "@/src/types/globale"
 
-interface SearchButtonProps {
-  onClick: () => void
-}
 
 export default function SearchButton({ onClick }: SearchButtonProps) {
   /**

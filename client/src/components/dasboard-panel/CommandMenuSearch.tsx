@@ -1,20 +1,11 @@
 "use client"
 
 import React from "react"
-import {
-  CommandDialog,
-  CommandEmpty,
-  CommandInput,
-  CommandList,
-} from "../ui/command"
 import { DialogTitle } from "../ui/dialog"
+import { CommandMenuProps } from "@/src/types/globale"
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden"
+import { CommandDialog, CommandEmpty, CommandInput, CommandList } from "../ui/command"
 
-
-interface CommandMenuProps {
-  open: boolean
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>
-}
 
 export default function CommandMenuSearch({ open, setOpen }: CommandMenuProps) {
   /**
