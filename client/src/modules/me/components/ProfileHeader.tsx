@@ -2,8 +2,10 @@
 
 import Image from "next/image"
 import AvatarUpload from "./AvatarUpload"
+import { Button } from "@/src/components/ui/button"
 import { useCurrentUser } from "../queries/useCurrentUser"
 import profileCover from "@/public/images/profile-cover.jpg"
+
 
 
 
@@ -20,7 +22,7 @@ export default function ProfileHeader() {
    * ! AFFICHAGE (render) de l'application
    */
   return (
-    <div className="mx-auto overflow-hidden rounded-md bg-white shadow">
+      <div className="mx-auto overflow-hidden rounded-md bg-white shadow">
       <div className="relative h-72 w-full">
         <Image
           src={profileCover}
@@ -36,10 +38,16 @@ export default function ProfileHeader() {
         <h2 className="mt-2 font-spaceGrotesk text-lg font-semibold text-gray-800">
           {payload?.name}
         </h2>
-        <p className="mt-1 text-center font-spaceGrotesk text-sm text-muted-foreground max-md:mt-2 max-md:text-left">
-          Fan de mangas, toujours à la recherche de nouvelles aventures à
-          dévorer ✨
-        </p>
+
+        <div className="flex  w-full items-center justify-between gap-4 max-md:flex-col max-md:items-start max-md:gap-2">
+          <p className="font-spaceGrotesk text-sm text-muted-foreground text-left">
+            Fan de mangas, toujours à la recherche de nouvelles aventures à dévorer ✨
+          </p>
+
+          <Button variant="outline" className="font-spaceGrotesk">
+            Edit Profile
+          </Button>
+        </div>
       </div>
     </div>
   )
