@@ -13,4 +13,8 @@ export const loginUser = async (data: z.infer<typeof loginSchema>) => {
 }
 
 // Fonction pour déconnecter un utilisateur
-export const logoutUser = async () => {}
+export const logoutUser = async () => {
+   return await authFetch<LoginResponse>("/auth/logout", {
+    method: "POST",
+  })
+}
