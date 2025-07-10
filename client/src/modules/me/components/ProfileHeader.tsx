@@ -15,6 +15,7 @@ export default function ProfileHeader() {
   /**
    * ! STATE (état, données) de l'application
    */
+  
   const { data: payload } = useCurrentUser()
     const [isDialogOpen, setIsDialogOpen] = useState(false)
 
