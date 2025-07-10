@@ -10,3 +10,9 @@ type payload = {
   name: string
   image?: string
 }
+
+
+export type EditProfileDialogProps = {
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}
