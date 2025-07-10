@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { Edit } from "lucide-react"
+import { UserRoundCog } from "lucide-react"
 import AvatarProfile from "./AvatarProfile"
 import { Button } from "@/src/components/ui/button"
 import { useCurrentUser } from "../queries/useCurrentUser"
@@ -45,7 +45,7 @@ export default function ProfileHeader() {
           </p>
 
           <Button className="font-spaceGrotesk bg-pink-700 text-white font-semibold">
-            <Edit className="w-4 h-4 " />
+            <UserRoundCog className="w-4 h-4" />
             Modifier Profile
           </Button>
         </div>
