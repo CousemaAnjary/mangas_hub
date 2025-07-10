@@ -44,8 +44,8 @@ export default function ProfileHeader() {
             Fan de mangas, toujours à la recherche de nouvelles aventures à dévorer ✨
           </p>
 
-          <Button variant="outline" className="font-spaceGrotesk">
-            Edit Profile
+          <Button className="font-spaceGrotesk bg-pink-600 text-white font-semibold">
+            Modifier Profile
           </Button>
         </div>
       </div>
