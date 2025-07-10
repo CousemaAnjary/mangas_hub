@@ -1,8 +1,8 @@
 import type { Context } from "hono"
 import { jsonError } from "../utils/jsonError"
-import { setAccessTokenCookie } from "../utils/access_token"
 import { loginService, registerService } from "../services/auth.service"
 import { loginSchema, registerSchema } from "../validations/auth.validation"
+import { deleteAccessTokenCookie, setAccessTokenCookie } from "../utils/access_token"
 
 
 export const registerController = async (c: Context) => {
@@ -34,4 +34,9 @@ export const loginController = async (c: Context) => {
   } catch (error) {
     return c.json(jsonError(error), 500)
   }
+}
+
+export const logoutController = async (c: Context) => {
+  deleteAccessTokenCookie(c)
+  return c.json({ success: true, message: "Déconnexion réussie" }, 200)
 }
