@@ -1,14 +1,10 @@
 "use client"
 
 import { cn } from "../lib/utils"
+import { Button } from "./ui/button"
 import { Loader } from "lucide-react"
-import { Button, ButtonProps } from "./ui/button"
+import { LoadingButtonProps } from "../types/globale"
 
-interface LoadingButtonProps extends ButtonProps {
-  loading?: boolean
-  loadingText?: string
-  children: React.ReactNode
-}
 
 export default function LoadingButton({
   loading = false,
