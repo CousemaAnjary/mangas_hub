@@ -6,13 +6,7 @@ import { Loader } from "lucide-react"
 import { LoadingButtonProps } from "../types/globale"
 
 
-export default function LoadingButton({
-  loading = false,
-  children,
-  loadingText = "Veuillez patienter",
-  className,
-  ...props
-}: LoadingButtonProps) {
+export default function LoadingButton({ loading = false, children, loadingText = "Veuillez patienter", className, ...props }: LoadingButtonProps) {
   /**
    * ! STATE (état, données) de l'application
    */
@@ -26,7 +20,7 @@ export default function LoadingButton({
    */
   return (
     <Button
-      className={cn(" bg-blue-900  hover:bg-blue-950 dark:bg-white", className)}
+      className={cn("bg-blue-900 hover:bg-blue-950 dark:bg-white", className)}
       disabled={loading}
       {...props}
     >
