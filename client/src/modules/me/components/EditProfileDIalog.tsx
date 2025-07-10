@@ -24,6 +24,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import z from "zod"
 import { EditProfileDialogProps } from "../types/me"
+import { useCurrentUser } from "../queries/useCurrentUser"
 
 export default function EditProfileDialog({
   open,
@@ -32,11 +33,12 @@ export default function EditProfileDialog({
   /**
    * ! STATE (état, données) de l'application
    */
+const { data: payload } = useCurrentUser()
 
   const form = useForm<z.infer<typeof updateUserSchema>>({
     resolver: zodResolver(updateUserSchema),
     defaultValues: {
-      name: "",
+      name: payload?.name ,
       image: undefined,
     },
   })
@@ -72,7 +74,7 @@ export default function EditProfileDialog({
                   <FormItem>
                     <FormLabel>Nom complet</FormLabel>
                     <FormControl>
-                      <Input placeholder="ABDILLAH Cousema Anjary" {...field} />
+                      <Input {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
