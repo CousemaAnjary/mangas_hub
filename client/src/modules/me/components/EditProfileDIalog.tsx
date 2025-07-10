@@ -31,7 +31,6 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
    */
   const onSubmit = async (data: z.infer<typeof updateUserSchema>) => {
     const formData = new FormData()
-    formData.append("image", data.image as File)
   }
   /**
    * ! AFFICHAGE (render) de l'application
