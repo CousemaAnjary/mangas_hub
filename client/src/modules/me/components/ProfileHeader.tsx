@@ -1,12 +1,10 @@
 "use client"
 
 import Image from "next/image"
-import AvatarUpload from "./AvatarUpload"
+import AvatarProfile from "./AvatarProfile"
 import { Button } from "@/src/components/ui/button"
 import { useCurrentUser } from "../queries/useCurrentUser"
 import profileCover from "@/public/images/profile-cover.jpg"
-
-
 
 
 export default function ProfileHeader() {
@@ -33,7 +31,7 @@ export default function ProfileHeader() {
       </div>
 
       <div className="relative -mt-20 flex flex-col items-start px-6 pb-6">
-        <AvatarUpload />
+        <AvatarProfile />
 
         <h2 className="mt-2 font-spaceGrotesk text-lg font-semibold text-gray-800">
           {payload?.name}
@@ -44,7 +42,7 @@ export default function ProfileHeader() {
             Fan de mangas, toujours à la recherche de nouvelles aventures à dévorer ✨
           </p>
 
-          <Button className="font-spaceGrotesk bg-pink-600 text-white font-semibold">
+          <Button className="font-spaceGrotesk bg-pink-700 text-white font-semibold">
             Modifier Profile
           </Button>
         </div>

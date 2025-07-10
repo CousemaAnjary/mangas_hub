@@ -1,17 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
 "use client"
 
+import { XIcon } from "lucide-react"
 import user from "@/public/images/user.png"
-import {  Pencil, XIcon } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
 import { useFileUpload } from "@/src/hooks/use-file-upload"
 
 
-export default function AvatarUpload() {
+export default function AvatarProfile() {
   /**
    * ! STATE (état, données) de l'application
    */
-  const [{ files }, { removeFile, openFileDialog, getInputProps }] = useFileUpload({
+  const [{ files }, { removeFile }] = useFileUpload({
       accept: "image/*",
   })
 
@@ -29,7 +29,6 @@ export default function AvatarUpload() {
       <Button
         variant="outline"
         className="group relative size-full rounded-xl border-2 border-white p-0 shadow-md overflow-hidden bg-transparent hover:bg-transparent"
-        onClick={openFileDialog}
       >
         <div className="absolute inset-0">
           <img
@@ -39,10 +38,6 @@ export default function AvatarUpload() {
               previewUrl ? "object-cover" : "object-contain p-5"
             }`}
           />
-        </div>
-
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40">
-          <Pencil className="text-white drop-shadow-lg" />
         </div>
       </Button>
 
@@ -56,12 +51,6 @@ export default function AvatarUpload() {
           <XIcon className="size-3.5" />
         </Button>
       )}
-      <input
-        {...getInputProps()}
-        className="sr-only"
-        aria-label="Uploader un fichier image"
-        tabIndex={-1}
-      />
     </div>
   )
 }
