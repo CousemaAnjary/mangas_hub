@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import { Edit } from "lucide-react"
 import AvatarProfile from "./AvatarProfile"
 import { Button } from "@/src/components/ui/button"
 import { useCurrentUser } from "../queries/useCurrentUser"
@@ -20,7 +21,7 @@ export default function ProfileHeader() {
    * ! AFFICHAGE (render) de l'application
    */
   return (
-      <div className="mx-auto overflow-hidden rounded-md bg-white shadow">
+    <div className="mx-auto overflow-hidden rounded-md bg-white shadow">
       <div className="relative h-72 w-full">
         <Image
           src={profileCover}
@@ -39,10 +40,12 @@ export default function ProfileHeader() {
 
         <div className="flex  w-full items-center justify-between gap-4 max-md:flex-col max-md:items-start max-md:gap-2">
           <p className="font-spaceGrotesk text-sm text-muted-foreground text-left">
-            Fan de mangas, toujours à la recherche de nouvelles aventures à dévorer ✨
+            Fan de mangas, toujours à la recherche de nouvelles aventures à
+            dévorer ✨
           </p>
 
           <Button className="font-spaceGrotesk bg-pink-700 text-white font-semibold">
+            <Edit className="w-4 h-4 " />
             Modifier Profile
           </Button>
         </div>
