@@ -13,3 +13,5 @@ export const getCurrentUserController = async (c: Context) => {
     return c.json(jsonError(error), 500)
   }
 }
+
+export const updateUserController = async (c: Context) => {}

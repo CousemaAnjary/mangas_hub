@@ -11,6 +11,6 @@ export const getCurrentUser = async () => {
 
 export const updateUser = async (data: z.infer<typeof updateUserSchema>) => {
    await authFetch("/me/updateUser", {
-
+      method: "PATCH",
    })
 }
