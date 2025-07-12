@@ -1,6 +1,7 @@
 "use client"
 
 import z from "zod"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { UserRoundCog } from "lucide-react"
 import { Input } from "@/src/components/ui/input"
@@ -19,6 +20,7 @@ export default function EditProfileDialog() {
   /**
    * ! STATE (état, données) de l'application
    */
+  const [open, setOpen] = useState(false)
   const { data: payload } = useCurrentUser()
   const {mutate:updateUser, isPending} = useUpdateUser()
 
@@ -32,7 +34,7 @@ export default function EditProfileDialog() {
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
    */
-  const handleUpdateUser = async (data: z.infer<typeof updateUserSchema>) => {
+   const handleUpdateUser = async (data: z.infer<typeof updateUserSchema>) => {
     const formData = new FormData()
     formData.append("name", data.name ?? "")
     if (data.image instanceof File) formData.append("image", data.image)
@@ -40,6 +42,7 @@ export default function EditProfileDialog() {
     updateUser(formData, {
       onSuccess: () => {
         form.reset()
+        setOpen(false) // Fermer le dialog
       },
     })
   }
@@ -47,7 +50,7 @@ export default function EditProfileDialog() {
    * ! AFFICHAGE (render) de l'application
    */
   return (
-    <Dialog>
+     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="font-spaceGrotesk bg-pink-700 hover:bg-pink-800 text-white font-semibold">
           <UserRoundCog className="w-4 h-4" />

@@ -10,8 +10,8 @@ export const useUpdateUser = () => {
 
     // Gestion des erreurs et success
     onSuccess: (response) => {
+      queryClient.invalidateQueries({ queryKey: ["currentUser"] })
       toast.success(response.message)
-      queryClient.invalidateQueries({ queryKey: ['currentUser'] })
     },
     onError: (error) => {
       toast.error(error.message)
