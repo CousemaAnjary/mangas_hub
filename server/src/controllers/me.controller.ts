@@ -14,10 +14,11 @@ export const getCurrentUserController = async (c: Context) => {
   }
 }
 
+// Mettre à jour les informations de l'utilisateur
 export const updateUserController = async (c: Context) => {
   try {
     return c.json({ success: true, message: "Utilisateur mis à jour avec succès" }, 200)
-    
+
   }catch (error) {
     return c.json(jsonError(error), 500)
   }
