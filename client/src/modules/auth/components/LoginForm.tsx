@@ -3,7 +3,6 @@
 import z from "zod"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
-import { useRouter } from "next/navigation"
 import { useLogin } from "../hooks/useLogin"
 import { Input } from "@/src/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -17,9 +16,8 @@ export default function LoginForm() {
   /**
    * ! STATE (état, données) de l'application
    */
-  const router = useRouter()
   const { mutate: login, isPending } = useLogin()
-   const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
 
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
@@ -33,7 +31,7 @@ export default function LoginForm() {
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
    */
   const handleLogin = async (data: z.infer<typeof loginSchema>) => {
-    login(data, { onSuccess: () => { router.push("/profile") } })
+    login(data)
   }
   
   /**
