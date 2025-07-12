@@ -10,6 +10,7 @@ import { useCurrentUser } from "../queries/useCurrentUser"
 import { updateUserSchema } from "@/src/validations/me.validation"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/src/components/ui/dialog"
+import LoadingButton from "@/src/components/LoadingButton"
 
 
 export default function EditProfileDialog({ open, onOpenChange }: EditProfileDialogProps) {
@@ -31,6 +32,8 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
    */
   const onSubmit = async (data: z.infer<typeof updateUserSchema>) => {
     const formData = new FormData()
+    formData.append("name", data.name ?? "")
+    if (data.image instanceof File) formData.append("image", data.image)
   }
   /**
    * ! AFFICHAGE (render) de l'application
@@ -42,7 +45,7 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle className="font-spaceGrotesk">
-                Modifier le profil
+                Modifier le profile
               </DialogTitle>
               <DialogDescription className="font-spaceGrotesk">
                 Modifiez les informations de votre profil
@@ -83,9 +86,10 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
                         <Input
                           type="file"
                           accept="image/*"
+                          className="font-spaceGrotesk"
                           onChange={(e) => {
                             const file = e.target.files?.[0]
-                            if (file) field.onChange(file)
+                            field.onChange(file ?? undefined)
                           }}
                         />
                       </FormControl>
@@ -98,11 +102,11 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
 
             <DialogFooter>
               <DialogClose asChild>
-                <Button type="button" variant="outline">
+                <Button type="button" variant="outline" className="font-spaceGrotesk font-semibold">
                   Annuler
                 </Button>
               </DialogClose>
-              <Button type="submit">Enregistrer</Button>
+              <LoadingButton className="font-spaceGrotesk font-semibold bg-pink-700 hover:bg-pink-800">Enregistrer</LoadingButton>
             </DialogFooter>
           </DialogContent>
         </form>
