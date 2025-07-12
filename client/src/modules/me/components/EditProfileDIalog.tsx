@@ -7,10 +7,10 @@ import { Button } from "@/src/components/ui/button"
 import { EditProfileDialogProps } from "../types/me"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useCurrentUser } from "../queries/useCurrentUser"
+import LoadingButton from "@/src/components/LoadingButton"
 import { updateUserSchema } from "@/src/validations/me.validation"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/src/components/ui/dialog"
-import LoadingButton from "@/src/components/LoadingButton"
 
 
 export default function EditProfileDialog({ open, onOpenChange }: EditProfileDialogProps) {

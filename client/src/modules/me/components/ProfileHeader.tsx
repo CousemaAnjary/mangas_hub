@@ -51,7 +51,7 @@ export default function ProfileHeader() {
           </p>
 
           <Button 
-            className="font-spaceGrotesk bg-pink-700 text-white font-semibold"
+            className="font-spaceGrotesk bg-pink-700 hover:bg-pink-800 text-white font-semibold"
             onClick={() => setIsDialogOpen(true)}
           >
             <UserRoundCog className="w-4 h-4" />
