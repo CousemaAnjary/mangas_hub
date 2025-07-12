@@ -2,19 +2,20 @@
 
 import z from "zod"
 import { useForm } from "react-hook-form"
+import { UserRoundCog } from "lucide-react"
 import { Input } from "@/src/components/ui/input"
 import { Button } from "@/src/components/ui/button"
-import { EditProfileDialogProps } from "../types/me"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useUpdateUser } from "../hooks/useUpdateUser"
 import { useCurrentUser } from "../queries/useCurrentUser"
 import LoadingButton from "@/src/components/LoadingButton"
 import { updateUserSchema } from "@/src/validations/me.validation"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/src/components/ui/dialog"
-import { useUpdateUser } from "../hooks/useUpdateUser"
+import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/src/components/ui/dialog"
 
 
-export default function EditProfileDialog({ open, onOpenChange }: EditProfileDialogProps) {
+
+export default function EditProfileDialog() {
   /**
    * ! STATE (état, données) de l'application
    */
@@ -28,7 +29,6 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
       image: undefined,
     },
   })
-
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
    */
@@ -39,20 +39,25 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
 
     updateUser(formData, {
       onSuccess: () => {
-        console.log("✅ Mise à jour réussie")
-        onOpenChange(false)
         form.reset()
       },
     })
   }
-  /**
+    /**
    * ! AFFICHAGE (render) de l'application
    */
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
-      <Form {...form}>
-        <form onSubmit={form.handleSubmit(handleUpdateUser)}>
-          <DialogContent className="sm:max-w-[425px]">
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className="font-spaceGrotesk bg-pink-700 hover:bg-pink-800 text-white font-semibold">
+          <UserRoundCog className="w-4 h-4" />
+          Modifier le profil
+        </Button>
+      </DialogTrigger>
+
+      <DialogContent className="sm:max-w-[425px]">
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(handleUpdateUser)} className="space-y-4">
             <DialogHeader>
               <DialogTitle className="font-spaceGrotesk">
                 Modifier le profile
@@ -62,7 +67,7 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
               </DialogDescription>
             </DialogHeader>
 
-            <div className="grid gap-4 py-4">
+          <div className="grid gap-4 py-4">
               {/* Champ nom */}
               <FormField
                 control={form.control}
@@ -116,11 +121,11 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
                   Annuler
                 </Button>
               </DialogClose>
-              <LoadingButton loading={isPending} className="font-spaceGrotesk font-semibold bg-pink-700 hover:bg-pink-800">Enregistrer</LoadingButton>
+              <LoadingButton type="submit" loading={isPending} className="font-spaceGrotesk font-semibold bg-pink-700 hover:bg-pink-800">Enregistrer</LoadingButton>
             </DialogFooter>
-          </DialogContent>
-        </form>
-      </Form>
+          </form>
+        </Form>
+      </DialogContent>
     </Dialog>
   )
 }

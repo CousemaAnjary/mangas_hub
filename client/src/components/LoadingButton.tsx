@@ -20,7 +20,6 @@ export default function LoadingButton({ loading = false, children, className, ..
    */
   return (
     <Button
-      type="submit"
       className={cn("bg-blue-900 hover:bg-blue-950 dark:bg-white", className)}
       disabled={loading}
       {...props}

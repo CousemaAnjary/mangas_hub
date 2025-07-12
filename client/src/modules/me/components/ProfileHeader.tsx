@@ -1,14 +1,10 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
-import { UserRoundCog } from "lucide-react"
 import AvatarProfile from "./AvatarProfile"
-import { Button } from "@/src/components/ui/button"
+import EditProfileDialog from "./EditProfileDialog"
 import { useCurrentUser } from "../queries/useCurrentUser"
 import profileCover from "@/public/images/profile-cover.jpg"
-import EditProfileDIalog from "./EditProfileDIalog"
-
 
 
 export default function ProfileHeader() {
@@ -17,7 +13,6 @@ export default function ProfileHeader() {
    */
 
   const { data: payload } = useCurrentUser()
-  const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
@@ -50,18 +45,12 @@ export default function ProfileHeader() {
             dévorer ✨
           </p>
 
-          <Button 
-            className="font-spaceGrotesk bg-pink-700 hover:bg-pink-800 text-white font-semibold"
-            onClick={() => setIsDialogOpen(true)}
-          >
-            <UserRoundCog className="w-4 h-4" />
-            Modifier Profile
-          </Button>
+          {/* 🧩 Dialogue d’édition */}
+        <EditProfileDialog />
         </div>
       </div>
 
-      {/* 🧩 Dialogue d’édition */}
-      <EditProfileDIalog open={isDialogOpen} onOpenChange={setIsDialogOpen} />
+      
     </div>
   )
 }
