@@ -19,4 +19,11 @@ export type EditProfileDialogProps = {
 export type UpdateUserResponse = {
   success: boolean
   message: string
+  updateUser : UpdateUser
+}
+
+type UpdateUser = {
+  id: number
+  name: string
+  image?: string
 }

@@ -32,13 +32,14 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
    */
-  const onSubmit = async (data: z.infer<typeof updateUserSchema>) => {
+  const handleUpdateUser = async (data: z.infer<typeof updateUserSchema>) => {
     const formData = new FormData()
     formData.append("name", data.name ?? "")
     if (data.image instanceof File) formData.append("image", data.image)
 
     updateUser(formData, {
       onSuccess: () => {
+        console.log("✅ Mise à jour réussie")
         onOpenChange(false)
         form.reset()
       },
@@ -50,7 +51,7 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)}>
+        <form onSubmit={form.handleSubmit(handleUpdateUser)}>
           <DialogContent className="sm:max-w-[425px]">
             <DialogHeader>
               <DialogTitle className="font-spaceGrotesk">
