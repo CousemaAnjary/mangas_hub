@@ -11,8 +11,12 @@ type payload = {
   image?: string
 }
 
-
 export type EditProfileDialogProps = {
   open: boolean
   onOpenChange: (open: boolean) => void
+}
+
+export type UpdateUserResponse = {
+  success: boolean
+  message: string
 }

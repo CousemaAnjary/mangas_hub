@@ -11,6 +11,7 @@ import LoadingButton from "@/src/components/LoadingButton"
 import { updateUserSchema } from "@/src/validations/me.validation"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/src/components/ui/form"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "@/src/components/ui/dialog"
+import { useUpdateUser } from "../hooks/useUpdateUser"
 
 
 export default function EditProfileDialog({ open, onOpenChange }: EditProfileDialogProps) {
@@ -18,6 +19,7 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
    * ! STATE (état, données) de l'application
    */
   const { data: payload } = useCurrentUser()
+  const {mutate:updateUser, isPending} = useUpdateUser()
 
   const form = useForm<z.infer<typeof updateUserSchema>>({
     resolver: zodResolver(updateUserSchema),
@@ -34,6 +36,13 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
     const formData = new FormData()
     formData.append("name", data.name ?? "")
     if (data.image instanceof File) formData.append("image", data.image)
+
+    updateUser(formData, {
+      onSuccess: () => {
+        onOpenChange(false)
+        form.reset()
+      },
+    })
   }
   /**
    * ! AFFICHAGE (render) de l'application
@@ -106,7 +115,7 @@ export default function EditProfileDialog({ open, onOpenChange }: EditProfileDia
                   Annuler
                 </Button>
               </DialogClose>
-              <LoadingButton className="font-spaceGrotesk font-semibold bg-pink-700 hover:bg-pink-800">Enregistrer</LoadingButton>
+              <LoadingButton loading={isPending} className="font-spaceGrotesk font-semibold bg-pink-700 hover:bg-pink-800">Enregistrer</LoadingButton>
             </DialogFooter>
           </DialogContent>
         </form>
