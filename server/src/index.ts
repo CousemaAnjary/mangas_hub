@@ -3,7 +3,7 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import router from './routes/index'
 import { serve } from '@hono/node-server'
-
+import { serveStatic } from '@hono/node-server/serve-static'
 
 // App principale
 const app = new Hono()
@@ -13,6 +13,9 @@ app.use('*', cors({
   origin: "http://localhost:3000",
   credentials: true, // Autorise les cookies 
 }))
+
+// Middleware pour servir les fichiers statiques depuis /public
+app.use("/uploads/*", serveStatic({ root: "./public" }))
 
 
 // Routes
