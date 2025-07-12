@@ -1,16 +1,11 @@
 import type { Context } from "hono"
 import { jsonError } from "../utils/jsonError"
+import { formDataToObject } from "../utils/formDataToObject"
 import { updateUserSchema } from "../validations/me.validation"
 import { getCurrentUserService, updateUserService } from "../services/me.service"
 
+
 // Utility function to convert FormData to a plain object
-function formDataToObject(formData: FormData): Record<string, any> {
-  const obj: Record<string, any> = {};
-  for (const [key, value] of formData.entries()) {
-    obj[key] = value;
-  }
-  return obj;
-}
 
 
 // Récupérer les informations de l'utilisateur actuel
