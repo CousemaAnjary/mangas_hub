@@ -6,6 +6,7 @@ import type z from "zod"
 import type { Payload } from "../types/auth"
 import type { updateUserSchema } from "../validations/me.validation"
 import { updateUserById } from "../repositories/me.repository"
+import type { UploadUser } from "../types/me"
 
 
 export const getCurrentUserService = async (c: Context): Promise<Payload> => {
