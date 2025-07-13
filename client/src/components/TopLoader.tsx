@@ -15,7 +15,9 @@ export default function TopLoader() {
    */
    return (
     <NextTopLoader
-      height={2}
+      color="#29d"
+      height={2.1}
+      showSpinner={false}   
     />
   )
 }
