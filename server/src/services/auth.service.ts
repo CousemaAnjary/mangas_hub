@@ -40,10 +40,8 @@ export const loginService = async(data: z.infer<typeof loginSchema>):Promise<{ a
   if (!isPasswordValid) throw new Error("Mot de passe incorrect")
 
   const payload :Payload = {
-    id: user.id,
-    name: user.name,
-    email: user.email,
-    image: user.image ?? undefined
+    sub: user.id,
+    role: user.role
   }
 
   // Génération du token d'accès
