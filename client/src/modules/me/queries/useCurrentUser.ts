@@ -6,5 +6,6 @@ export const useCurrentUser = () => {
     // Clé unique pour cette requête
     queryKey: ["currentUser"],
     queryFn: getCurrentUser,
+     staleTime: 0,
   })
 }

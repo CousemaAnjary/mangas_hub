@@ -22,7 +22,7 @@ export default function EditProfileDialog() {
    */
   const [open, setOpen] = useState(false)
   const { data: payload } = useCurrentUser()
-  const {mutate:updateUser, isPending} = useUpdateUser()
+  const {mutateAsync:updateUser, isPending} = useUpdateUser()
 
   const form = useForm<z.infer<typeof updateUserSchema>>({
     resolver: zodResolver(updateUserSchema),
