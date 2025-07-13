@@ -1,11 +1,7 @@
 export type Payload = {
-  id: number
-  email: string
-  name: string
-  image?: string
+  sub: number
 }
 
 export type JwtPayload = Payload & {
-  iat: number
   exp: number
 }
