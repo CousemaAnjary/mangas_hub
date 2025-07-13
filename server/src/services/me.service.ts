@@ -1,13 +1,12 @@
-import { randomUUID } from "crypto"
+import type z from "zod"
+import path from "path"
 import fs from "fs/promises"
 import type { Context } from "hono"
-import path from "path"
-import type z from "zod"
+import { randomUUID } from "crypto"
+import type { User } from "../models"
 import type { Payload } from "../types/auth"
 import type { updateUserSchema } from "../validations/me.validation"
 import { findUserById, updateUserById } from "../repositories/me.repository"
-import type { UploadUser } from "../types/me"
-import type { User } from "../models"
 
 
 export const getCurrentUserService = async (c: Context): Promise<User> => {
@@ -24,35 +23,35 @@ export const getCurrentUserService = async (c: Context): Promise<User> => {
 
 export const updateUserService = async (data: z.infer<typeof updateUserSchema>, c: Context) => {
 
-  // const user = c.get("payload") as Payload
-  // const userId = user.id
+  const payload = c.get("payload") as Payload
+  const userId = payload.sub
 
-  // // Destructuration des données validées
-  // const { name, image } = data
-  // let imageUrl: string | undefined = undefined
+  // Destructuration des données validées
+  const { name, image } = data
+  let imageUrl: string | undefined = undefined
 
-  // if (image) {
-  //   // Lire le contenu binaire du fichier
-  //   const buffer = await image.arrayBuffer()
+  if (image) {
+    // Lire le contenu binaire du fichier
+    const buffer = await image.arrayBuffer()
 
-  //   // Extension du fichier (ex: .jpg)
-  //   const extension = image.name.split(".").pop()
+    // Extension du fichier (ex: .jpg)
+    const extension = image.name.split(".").pop()
 
-  //    // Nom unique pour le fichier
-  //   const uniqueFileName = `${randomUUID()}.${extension}`
+     // Nom unique pour le fichier
+    const uniqueFileName = `${randomUUID()}.${extension}`
 
-  //   // Chemin de destination (à adapter selon ton infrastructure)
-  //   const filePath = path.join("public/uploads", uniqueFileName)
+    // Chemin de destination (à adapter selon ton infrastructure)
+    const filePath = path.join("public/uploads", uniqueFileName)
 
-  //   // Écrire le fichier sur le disque
-  //   await fs.writeFile(filePath, Buffer.from(buffer))
+    // Écrire le fichier sur le disque
+    await fs.writeFile(filePath, Buffer.from(buffer))
 
-  //   // construire l'URL de l'image
-  //   imageUrl = `/uploads/${uniqueFileName}`
-  // }
+    // construire l'URL de l'image
+    imageUrl = `/uploads/${uniqueFileName}`
+  }
 
-  // // Mettre à jour l'utilisateur dans la base de données
-  // const updatedUser = await updateUserById(userId, imageUrl, name)
+  // Mettre à jour l'utilisateur dans la base de données
+  const updatedUser = await updateUserById(userId, imageUrl, name)
 
-  // return updatedUser
+  return updatedUser
 }
