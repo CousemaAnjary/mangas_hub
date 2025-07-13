@@ -1,9 +1,9 @@
 import type z from "zod"
 import type { User } from "../models"
-import type { Payload } from "../types/auth"
-import { generateToken } from "../utils/jwt"
-import { comparePassword, hashPassword } from "../utils/hash"
 import { createUser, findUserByEmail } from "../repositories/auth.repository"
+import type { Payload } from "../types/auth"
+import { comparePassword, hashPassword } from "../utils/hash"
+import { generateToken } from "../utils/jwt"
 import type { loginSchema, registerSchema } from "../validations/auth.validation"
 
 
@@ -39,13 +39,14 @@ export const loginService = async(data: z.infer<typeof loginSchema>):Promise<{ a
   const isPasswordValid = await comparePassword(password, user.password)
   if (!isPasswordValid) throw new Error("Mot de passe incorrect")
 
-  const payload :Payload = {
+  const payload: Payload = {
     sub: user.id,
-    role: user.role
+    role: user.role,
+    exp: Math.floor(Date.now() / 1000) + 60 * 15, // token expire dans 15 minutes
   }
 
   // Génération du token d'accès
-  const accessToken = await generateToken(payload, 60 * 15)
+  const accessToken = await generateToken(payload)
 
   // Retourne le token d'accès et l'utilisateur
   return { accessToken }

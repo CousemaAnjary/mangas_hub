@@ -1,5 +1,5 @@
 import { sign, verify } from "hono/jwt"
-import type { JwtPayload, Payload } from "../types/auth.js"
+import type { Payload } from "../types/auth.js"
 
 const JWT_SECRET = process.env.JWT_SECRET as string
 
@@ -8,16 +8,8 @@ const JWT_SECRET = process.env.JWT_SECRET as string
  * @param payload - Le contenu du token
  * @returns Le token signé
  */
-export const generateToken = async (payload: Payload , expireIn: number): Promise<string> => {
-  const now = Math.floor(Date.now() / 1000)
-  return await sign(
-    {
-      ...payload,
-      iat: now,
-      exp: now + expireIn
-    },
-    JWT_SECRET
-  )
+export const generateToken = async (payload: Payload): Promise<string> => {
+  return await sign(payload, JWT_SECRET)
 }
 
 /**
@@ -26,6 +18,6 @@ export const generateToken = async (payload: Payload , expireIn: number): Promis
  * @returns Le payload JWT si le token est valide
  * @throws Erreur si token invalide ou expiré
  */
-export const verifyToken = async (token: string): Promise<JwtPayload> => {
-  return await verify(token, JWT_SECRET) as JwtPayload
+export const verifyToken = async (token: string): Promise<Payload> => {
+  return await verify(token, JWT_SECRET) as Payload
 }
