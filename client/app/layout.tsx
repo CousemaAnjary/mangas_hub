@@ -4,7 +4,9 @@ import type { Metadata } from "next"
 import { TanstackProvider } from "@/src/providers/tanstack-provider"
 import { Inter, Mansalva, Mogra, Space_Grotesk } from "next/font/google"
 import { ThemeProvider } from "@/src/providers/theme-provider"
-import GlobalLoader from "@/src/components/GlobalLoader"
+import TopLoader from "@/src/components/TopLoader"
+
+
 
 
 const inter = Inter({
@@ -51,7 +53,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <GlobalLoader /> 
+           <TopLoader />
             <Toaster richColors />
             {children}
           </ThemeProvider>
