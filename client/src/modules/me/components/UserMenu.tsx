@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+
 "use client"
 import user from "@/public/images/user.png"
 
@@ -16,12 +16,16 @@ import Link from "next/link"
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/src/components/ui/select"
 import ThemeSwitcher from "./ThemeSwitcher"
 import SignOutButton from "../../auth/components/SignOutButton"
+import { backendUrl } from "@/src/lib/api"
+import Image from "next/image"
 
 export default function UserMenu() {
   /**
    * ! STATE (état, données) de l'application
    */
+  
   const { data: currentUser } = useCurrentUser()
+  const previewUrl = currentUser?.image ? `${backendUrl}${currentUser.image}` : null
 
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
@@ -34,10 +38,12 @@ export default function UserMenu() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
-          <img
-            src={user.src}
+          <Image
+            src={ previewUrl ?? user}
+            width={24}
+            height={24}
             alt="Image de profil par défaut"
-            className="size-6 object-cover"
+            
           />
         </Button>
       </DropdownMenuTrigger>
