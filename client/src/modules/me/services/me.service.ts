@@ -4,7 +4,7 @@ import { GetCurrentUserResponse, UpdateUserResponse } from "../types/me"
 // Récupérer les informations de l'utilisateur actuel
 export const getCurrentUser = async () => {
   const res = await authFetch<GetCurrentUserResponse>("/me")
-  return res.payload
+  return res.user
 }
 
 // Mettre à jour les informations de l'utilisateur

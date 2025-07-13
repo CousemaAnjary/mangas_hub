@@ -1,14 +1,17 @@
 export type GetCurrentUserResponse = {
   success: boolean
   message: string
-  payload: payload
+  user: User
 }
 
-type payload = {
+type User = {
   id: number
-  email: string
   name: string
-  image?: string
+  email: string
+  password: string
+  image: string | null
+  role: "user" | "admin"
+  createdAt: Date
 }
 
 export type EditProfileDialogProps = {
@@ -19,7 +22,7 @@ export type EditProfileDialogProps = {
 export type UpdateUserResponse = {
   success: boolean
   message: string
-  updateUser : UpdateUser
+  updateUser: UpdateUser
 }
 
 type UpdateUser = {
