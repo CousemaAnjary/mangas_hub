@@ -1,11 +1,11 @@
-import { queryClient } from "@/src/lib/react-query"
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { useRouter } from "next/navigation"
 import { toast } from "sonner"
 import { logoutUser } from "../services/auth.service"
 
 export const useLogout = () => {
   const router = useRouter()
+  const queryClient = useQueryClient()
 
   return useMutation({
     // Fonction de mutation pour connecter un utilisateur

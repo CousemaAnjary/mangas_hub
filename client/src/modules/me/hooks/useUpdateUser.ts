@@ -1,9 +1,11 @@
-import { useMutation } from "@tanstack/react-query"
+import { useMutation, useQueryClient } from "@tanstack/react-query"
 import { toast } from "sonner"
 import { updateUser } from "../services/me.service"
-import { queryClient } from "@/src/lib/react-query"
+
 
 export const useUpdateUser = () => {
+  const queryClient = useQueryClient()
+
   return useMutation({
     // Fonction de mutation pour connecter un utilisateur
     mutationFn: updateUser,
