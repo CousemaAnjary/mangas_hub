@@ -1,7 +1,5 @@
 "use client"
 import NextTopLoader from "nextjs-toploader"
-import "../styles/toploader-custom.css"
-
 
 export default function TopLoader() {
   /**
