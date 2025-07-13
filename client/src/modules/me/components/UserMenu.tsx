@@ -21,7 +21,7 @@ export default function UserMenu() {
   /**
    * ! STATE (état, données) de l'application
    */
-  const { data: userPayload } = useCurrentUser()
+  const { data: currentUser } = useCurrentUser()
 
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
@@ -46,10 +46,10 @@ export default function UserMenu() {
           <Link href="/profile">
             <div className="min-w-0 flex flex-col overflow-hidden">
               <span className="truncate text-sm font-medium text-foreground font-spaceGrotesk">
-                {userPayload?.name || "Nom d’utilisateur"}
+                {currentUser?.name || "Nom d’utilisateur"}
               </span>
               <span className="truncate text-xs text-muted-foreground font-normal font-spaceGrotesk">
-                {userPayload?.email || "email@example.com"}
+                {currentUser?.email || "email@example.com"}
               </span>
             </div>
           </Link>

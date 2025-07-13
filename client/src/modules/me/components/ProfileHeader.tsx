@@ -12,13 +12,13 @@ export default function ProfileHeader() {
    * ! STATE (état, données) de l'application
    */
 
-  const { data: payload, isLoading } = useCurrentUser()
+  const { data: currentUser, isLoading } = useCurrentUser()
 
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
    */
-if (isLoading) return <p>Chargement...</p>
- if (!payload) return <p>Erreur : utilisateur introuvable.</p>
+  if (isLoading) return <p>Chargement...</p>
+
   /**
    * ! AFFICHAGE (render) de l'application
    */
@@ -37,7 +37,7 @@ if (isLoading) return <p>Chargement...</p>
         <AvatarProfile />
 
         <h2 className="mt-2 font-spaceGrotesk text-lg font-semibold text-gray-800">
-          {payload?.name}
+          {currentUser?.name}
         </h2>
 
         <div className="flex  w-full items-center justify-between gap-4 max-md:flex-col max-md:items-start max-md:gap-2">
