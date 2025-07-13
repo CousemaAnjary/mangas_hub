@@ -1,6 +1,16 @@
 import { eq } from "drizzle-orm"
 import db from "../configs/drizzle"
-import { users } from "../models"
+import { users, type User } from "../models"
+
+export const findUserById = async (userId: number): Promise<User | undefined> => {
+  const [user] = await db
+    .select()
+    .from(users)
+    .where(eq(users.id, userId))
+
+  return user
+}
+
 
 export const updateUserById = async (userId:number, imageUrl?:string, name?:string) => {
   await db

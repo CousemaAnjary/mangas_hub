@@ -5,14 +5,11 @@ import { updateUserSchema } from "../validations/me.validation"
 import { getCurrentUserService, updateUserService } from "../services/me.service"
 
 
-// Utility function to convert FormData to a plain object
-
-
 // Récupérer les informations de l'utilisateur actuel
 export const getCurrentUserController = async (c: Context) => {
   try {
-    const payload = await getCurrentUserService(c)
-    return c.json({ success: true, message: "Utilisateur récupéré avec succès", payload }, 200)
+    const user = await getCurrentUserService(c)
+    return c.json({ success: true, message: "Utilisateur récupéré avec succès", user }, 200)
 
   } catch (error) {
     return c.json(jsonError(error), 500)
