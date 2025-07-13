@@ -1,17 +1,27 @@
 "use client"
-import NProgress from "nprogress"
-import { useIsFetching } from "@tanstack/react-query"
+
 import { useEffect } from "react"
+import { usePathname } from "next/navigation"
+import { useIsFetching } from "@tanstack/react-query"
+import NProgress from "nprogress"
+import "@/src/styles/nprogress.css"
 
 export default function GlobalLoader() {
-  /**
-   * ! STATE (état, données) de l'application
-   */
+  const pathname = usePathname()
   const isFetching = useIsFetching()
+
+  // Démarre NProgress sur changement de page
+  useEffect(() => {
+    NProgress.start()
+    const timeout = setTimeout(() => {
+      NProgress.done()
+    }, 300)
+
+    return () => clearTimeout(timeout)
+  }, [pathname])
+
   
-  /**
-   * ! COMPORTEMENT (méthodes, fonctions) de l'application
-   */
+  // Démarre aussi si des requêtes React Query sont actives
   useEffect(() => {
     if (isFetching > 0) {
       NProgress.start()
@@ -19,9 +29,6 @@ export default function GlobalLoader() {
       NProgress.done()
     }
   }, [isFetching])
-  
-  /**
-   * ! AFFICHAGE (render) de l'application
-   */
-   return null
+
+  return null
 }

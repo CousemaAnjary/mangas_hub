@@ -12,12 +12,18 @@ export default function ProfileHeader() {
    * ! STATE (état, données) de l'application
    */
 
-  const { data: currentUser } = useCurrentUser()
+  const { data: currentUser ,isLoading, isError} = useCurrentUser()
 
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
    */
- 
+   if (isLoading) {
+    return <p className="p-6 text-gray-500">Chargement du profil...</p>
+  }
+
+  if (isError || !currentUser) {
+    return <p className="p-6 text-red-600">Erreur : utilisateur introuvable.</p>
+  }
 
   /**
    * ! AFFICHAGE (render) de l'application
