@@ -40,9 +40,10 @@ export default function UserMenu() {
         <Button variant="ghost" className="h-auto p-0 hover:bg-transparent">
           <Image
             src={ previewUrl ?? user}
-            width={24}
-            height={24}
+            width={30}
+            height={30}
             alt="Image de profil par défaut"
+            className="rounded-md"
             
           />
         </Button>
