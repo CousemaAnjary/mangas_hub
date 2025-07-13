@@ -1,7 +1,7 @@
 import z from "zod"
 
 export const updateUserSchema = z.object({
-  name: z.string().optional(),
+  name: z.string().min(1, { message: "Le nom est requis." }),
   image: z
     //  Vérifie que l'entrée est un fichier (File)
     .custom<File>((value) => value instanceof File, {
