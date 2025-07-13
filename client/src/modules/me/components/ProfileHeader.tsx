@@ -12,12 +12,12 @@ export default function ProfileHeader() {
    * ! STATE (état, données) de l'application
    */
 
-  const { data: currentUser, isLoading } = useCurrentUser()
+  const { data: currentUser } = useCurrentUser()
 
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
    */
-  if (isLoading) return <p>Chargement...</p>
+ 
 
   /**
    * ! AFFICHAGE (render) de l'application
