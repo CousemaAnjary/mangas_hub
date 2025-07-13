@@ -36,7 +36,7 @@ export default function EditProfileDialog() {
    */
    const handleUpdateUser = async (data: z.infer<typeof updateUserSchema>) => {
     const formData = new FormData()
-    formData.append("name", data.name ?? "")
+    formData.append("name", data.name)
     if (data.image instanceof File) formData.append("image", data.image)
 
     updateUser(formData, {
@@ -87,7 +87,7 @@ export default function EditProfileDialog() {
                         className="placeholder:font-spaceGrotesk font-spaceGrotesk"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <FormMessage className="font-spaceGrotesk"/>
                   </FormItem>
                 )}
               />
@@ -124,7 +124,7 @@ export default function EditProfileDialog() {
                   Annuler
                 </Button>
               </DialogClose>
-              <LoadingButton type="submit" loading={isPending} className="font-spaceGrotesk font-semibold bg-pink-700 hover:bg-pink-800">Enregistrer</LoadingButton>
+              <LoadingButton type="submit" loading={isPending}  className="font-spaceGrotesk font-semibold bg-pink-700 hover:bg-pink-800">Enregistrer</LoadingButton>
             </DialogFooter>
           </form>
         </Form>
