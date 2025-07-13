@@ -5,17 +5,20 @@ import { XIcon } from "lucide-react"
 import user from "@/public/images/user.png"
 import { Button } from "@/src/components/ui/button"
 import { useFileUpload } from "@/src/hooks/use-file-upload"
+import { useCurrentUser } from "../queries/useCurrentUser"
+import { backendUrl } from "@/src/lib/api"
 
 
 export default function AvatarProfile() {
   /**
    * ! STATE (état, données) de l'application
    */
+  const { data: currentUser } = useCurrentUser()
   const [{ files }, { removeFile }] = useFileUpload({
       accept: "image/*",
   })
 
-  const previewUrl = files[0]?.preview || null
+  const previewUrl = currentUser?.image ? `${backendUrl}${currentUser.image}` : null
 
   /**
    * ! COMPORTEMENT (méthodes, fonctions) de l'application
