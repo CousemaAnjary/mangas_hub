@@ -21,8 +21,8 @@ export default function EditProfileDialog() {
    * ! STATE (état, données) de l'application
    */
   const [open, setOpen] = useState(false)
-  const { data: payload } = useCurrentUser()
-  const {mutateAsync:updateUser, isPending} = useUpdateUser()
+  const { data: currentUser } = useCurrentUser()
+  const {mutate:updateUser, isPending} = useUpdateUser()
 
   const form = useForm<z.infer<typeof updateUserSchema>>({
     resolver: zodResolver(updateUserSchema),
@@ -82,7 +82,7 @@ export default function EditProfileDialog() {
                     </FormLabel>
                     <FormControl>
                       <Input
-                        placeholder={payload?.name}
+                        placeholder={currentUser?.name}
                         {...field}
                         className="placeholder:font-spaceGrotesk font-spaceGrotesk"
                       />
