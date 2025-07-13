@@ -4,6 +4,7 @@ import type { Metadata } from "next"
 import { TanstackProvider } from "@/src/providers/tanstack-provider"
 import { Inter, Mansalva, Mogra, Space_Grotesk } from "next/font/google"
 import { ThemeProvider } from "@/src/providers/theme-provider"
+import GlobalLoader from "@/src/components/GlobalLoader"
 
 
 const inter = Inter({
@@ -44,6 +45,7 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${mansalva.variable} ${mogra.variable}`}>
         <Toaster richColors />
+        <GlobalLoader />
        <TanstackProvider>
           <ThemeProvider
             attribute="class"
