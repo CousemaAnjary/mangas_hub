@@ -19,7 +19,7 @@ export default function ProfileHeader() {
    */
   if (isLoading) {
     return (
-      <div className="mx-auto h-72 w-full animate-pulse rounded-md bg-gray-200" />
+      <div className="mx-auto h-80 w-full animate-pulse rounded-md bg-gray-200" />
     )
   }
  
