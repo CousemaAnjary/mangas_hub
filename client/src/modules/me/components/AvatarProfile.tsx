@@ -2,11 +2,12 @@
 "use client"
 
 import { XIcon } from "lucide-react"
+import { backendUrl } from "@/src/lib/api"
 import user from "@/public/images/user.png"
 import { Button } from "@/src/components/ui/button"
 import { useFileUpload } from "@/src/hooks/use-file-upload"
 import { useCurrentUser } from "../queries/useCurrentUser"
-import { backendUrl } from "@/src/lib/api"
+
 
 
 export default function AvatarProfile() {
