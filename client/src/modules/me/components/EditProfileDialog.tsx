@@ -54,7 +54,7 @@ export default function EditProfileDialog() {
       <DialogTrigger asChild>
         <Button className="font-spaceGrotesk bg-pink-700 hover:bg-pink-800 text-white font-semibold">
           <UserRoundCog className="w-4 h-4" />
-          Modifier le profil
+          Modifier le profile
         </Button>
       </DialogTrigger>
 
