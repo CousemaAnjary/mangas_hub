@@ -44,15 +44,15 @@ export default function RootLayout({
   return (
     <html lang="fr" suppressHydrationWarning>
       <body className={`${inter.variable} ${spaceGrotesk.variable} ${mansalva.variable} ${mogra.variable}`}>
-        <Toaster richColors />
-        <GlobalLoader />
-       <TanstackProvider>
+        <TanstackProvider>
           <ThemeProvider
             attribute="class"
             defaultTheme="light"
             enableSystem
             disableTransitionOnChange
           >
+            <GlobalLoader /> 
+            <Toaster richColors />
             {children}
           </ThemeProvider>
         </TanstackProvider>
