@@ -21,6 +21,7 @@ export const getCurrentUserService = async (c: Context): Promise<User> => {
 }
 
 
+
 export const updateUserService = async (data: z.infer<typeof updateUserSchema>, c: Context) => {
 
   const payload = c.get("payload") as Payload
