@@ -16,7 +16,6 @@ export const getCurrentUserController = async (c: Context) => {
   }
 }
 
-
 // Mettre à jour les informations de l'utilisateur
 export const updateUserController = async (c: Context) => {
    // Validation les données d'entrée (body)
